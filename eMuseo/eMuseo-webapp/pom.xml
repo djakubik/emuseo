@@ -52,16 +52,22 @@
 			<artifactId>vaadin-themes</artifactId>
 			<version>${vaadin.version}</version>
 		</dependency>
+		<!-- FIXME WIDGETSET OPTIMALIZATION FOR OPENSHIFT -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.vaadin</groupId> -->
+		<!-- <artifactId>vaadin-client-compiler</artifactId> -->
+		<!-- <version>${vaadin.version}</version> -->
+		<!-- <exclusions> -->
+		<!-- <exclusion> -->
+		<!-- <groupId>org.eclipse.jetty.orbit</groupId> -->
+		<!-- <artifactId>javax.transaction</artifactId> -->
+		<!-- </exclusion> -->
+		<!-- </exclusions> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-client-compiler</artifactId>
+			<artifactId>vaadin-client-compiled</artifactId>
 			<version>${vaadin.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.eclipse.jetty.orbit</groupId>
-					<artifactId>javax.transaction</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -152,7 +158,9 @@
 				<artifactId>vaadin-maven-plugin</artifactId>
 				<version>${vaadin.version}</version>
 				<configuration>
-					<extraJvmArgs>-Xmx1024M -Xss1024k</extraJvmArgs>
+					<!-- FIXME WIDGETSET OPTIMALIZATION FOR OPENSHIFT -->
+					<!-- <extraJvmArgs>-Xmx1024M -Xss1024k</extraJvmArgs> -->
+					<extraJvmArgs>-Xmx128M -Xss1024k</extraJvmArgs>
 					<webappDirectory>${basedir}/src/main/webapp/VAADIN/widgetsets
 					</webappDirectory>
 					<hostedWebapp>${basedir}/src/main/webapp/VAADIN/widgetsets

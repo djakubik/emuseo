@@ -46,9 +46,14 @@
 			<param-name>UI</param-name>
 			<param-value>me.uni.emuseo.EMuseoUI</param-value>
 		</init-param>
+		<!-- FIXME WIDGETSET OPTIMALIZATION FOR OPENSHIFT -->
+		<!-- <init-param> -->
+		<!-- <param-name>widgetset</param-name> -->
+		<!-- <param-value>me.uni.emuseo.AppWidgetSet</param-value> -->
+		<!-- </init-param> -->
 		<init-param>
 			<param-name>widgetset</param-name>
-			<param-value>me.uni.emuseo.AppWidgetSet</param-value>
+			<param-value>com.vaadin.DefaultWidgetSet</param-value>
 		</init-param>
 		<load-on-startup>0</load-on-startup>
 	</servlet>

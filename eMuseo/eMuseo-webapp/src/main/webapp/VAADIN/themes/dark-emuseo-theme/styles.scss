@@ -1,0 +1,7 @@
+@import "addons.scss";
+@import "dark-emuseo-theme.scss";
+
+.dark-emuseo-theme {
+  @include addons;
+  @include dark-emuseo-theme;
+}

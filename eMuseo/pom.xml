@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>me.uni.emuseo</groupId>
+	<artifactId>eMuseo</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>eMuseo-api</module>
+		<module>eMuseo-utils</module>
+		<module>eMuseo-service</module>
+		<module>eMuseo-resteasy-service</module>
+		<module>eMuseo-webapp</module>
+	</modules>
+	
+	<properties>
+		<spring.version>4.1.4.RELEASE</spring.version>
+		<spring.security.version>4.0.0.RELEASE</spring.security.version>
+		<hibernate.version>4.2.21.Final</hibernate.version>
+		<mysql.version>5.1.31</mysql.version>
+		<postgresql.version>9.4.1209.jre7</postgresql.version>
+		<vaadin.version>7.7.0</vaadin.version>
+		
+		<joda-time.version>2.3</joda-time.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<log4j.version>1.2.16</log4j.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

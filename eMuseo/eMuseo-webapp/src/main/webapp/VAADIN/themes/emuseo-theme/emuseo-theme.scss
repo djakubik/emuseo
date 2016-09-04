@@ -1,0 +1,117 @@
+$v-app-loading-text: "eMuseo";
+$v-font-family: "Source Sans Pro", sans-serif;
+$v-font-size: 20px;
+$v-app-background-color: #fff;
+$v-background-color: #eee;
+$v-focus-color: #0072C6;
+$v-focus-style: 0 0 0 1px $v-focus-color;
+$valo-menu-background-color: darken($v-focus-color, 10%);
+$v-border: 0 solid v-shade;
+$v-border-radius: 0px;
+$v-bevel: false;
+$v-gradient: false;
+$v-shadow: false;
+$v-textfield-bevel: false;
+$v-textfield-shadow: false;
+$v-textfield-border: 1px solid v-shade;
+$v-link-text-decoration: none;
+$v-overlay-shadow: 0 0 0 2px #000;
+$v-overlay-border-width: 2px; // For IE8
+$v-window-shadow: $v-overlay-shadow;
+$v-selection-overlay-background-color: #fff;
+$v-selection-overlay-padding-horizontal: 0;
+$v-selection-overlay-padding-vertical: 6px;
+$v-panel-border: 2px solid v-shade;
+@import "../valo/valo";
+
+@mixin emuseo-theme {
+  @include valo;
+  
+  .layout-border{
+	border: 1px solid;
+  }
+  
+  .valo-menu-item {
+  	padding-right: 10px;
+  }
+  
+   .form-buttons {
+	float: right;
+	
+		.v-spacing {
+			width: 2px;
+		}
+	}
+  
+  .v-spacing{
+  	width: 5px;
+  }
+  
+  .v-caption-inline-icon span.v-icon {
+  	left: initial;
+  }
+  
+  .search-layout {
+  
+	.v-label {
+	  	width: initial;
+	  	display: block;
+	  	padding-top: 15px;
+		padding-left: 15px;
+	}
+  
+	.v-formlayout-captioncell {
+		width: 120px;
+		padding-left: 5px;
+	}
+  
+  	.v-formlayout-firstrow td {
+  		padding-top: 15px !important;
+  	}
+  	.v-formlayout-lastrow td {
+  		padding-bottom: 15px !important;
+  	}
+  	
+  	> .v-layout {
+  		margin-left: 10px;
+ 	 }
+  	
+  	.buttons-layout {
+    	padding-right: 60px;
+  		.v-button {
+		 	margin-right: 2px;
+		 	float: right;
+	 	}
+	 }
+  }
+  
+  .v-tooltip {
+  	.v-tooltip-text {
+  		* {
+  			margin-top: 12px;
+  			margin-bottom: 12px;
+  		}
+  	}
+  }
+  
+  .emuseo-button-icon {
+  	.v-icon {
+  		right: 25px;
+		position: absolute;
+		top: 7px;
+	}
+  }
+  
+  .emuseo-button-margin {
+  	margin-top: 7px;
+  	margin-bottom: 7px;
+  }
+  
+  .expanding-panel {
+  	.expanding-panel-button {
+  		@extend .emuseo-button-margin;
+  		@extend .emuseo-button-icon;
+  	}
+  }
+  
+}

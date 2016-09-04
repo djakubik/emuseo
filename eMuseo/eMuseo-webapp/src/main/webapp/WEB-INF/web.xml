@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<!-- <session-config> -->
+	<!-- <tracking-mode>COOKIE</tracking-mode> -->
+	<!-- </session-config> -->
+
+	<!-- <context-param> -->
+	<!-- <description>Vaadin production mode</description> -->
+	<!-- <param-name>productionMode</param-name> -->
+	<!-- <param-value>true</param-value> -->
+	<!-- </context-param> -->
+
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/api</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+  		</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>me.uni.emuseo.AppConfig</param-value>
+	</context-param>
+
+	<!-- Spring + RESTEasy -->
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- <listener> -->
+	<!-- <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
+	<!-- </listener> -->
+
+	<servlet>
+		<servlet-name>emuseo-servlet</servlet-name>
+		<servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
+		<init-param>
+			<param-name>UI</param-name>
+			<param-value>me.uni.emuseo.EMuseoUI</param-value>
+		</init-param>
+		<init-param>
+			<param-name>widgetset</param-name>
+			<param-value>me.uni.emuseo.AppWidgetSet</param-value>
+		</init-param>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>emuseo-servlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>resource-servlet</servlet-name>
+		<servlet-class>me.uni.emuseo.service.resource.ResourceServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>resource-servlet</servlet-name>
+		<url-pattern>/resource/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>resteasy-service</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>me.uni.emuseo.service.rest.ExhibitApplication</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>resteasy-service</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>

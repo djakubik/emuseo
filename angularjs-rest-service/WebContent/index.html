@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My AngularJS Rest Service Demo</title>
+<script src="js/lib/angular.js"></script>
+<script src="js/lib/angular-resource.js"></script>
+
+<script src="js/service.js"></script>
+<script src="js/controller.js"></script>
+
+</head>
+<body ng-app="serviceDemoApp">
+
+	<div ng-controller="serviceCtrl">
+		<h2 >Eksponaty na wystawie</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nazwa</th>
+					<th>Numer</th>
+					<th>Kategoria</th>
+					<th>Rok</th>
+					<th>Opis</th>
+					<th>Link</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="exhibit in response">
+					<td ng-bind="exhibit.exhibitId"></td>
+					<td ng-bind="exhibit.exhibitName"></td>
+					<td ng-bind="exhibit.exhibitNo"></td>
+					<td ng-bind="exhibit.exhibitCategory"></td>
+					<td ng-bind="exhibit.genericYear"></td>
+					<td ng-bind="exhibit.exhibitDesc"></td>
+					<td><a ng-hide="exhibit.resourceUrl == null"
+						ng-href="{{exhibit.resourceUrl}}" target="_blank">(LINK)</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

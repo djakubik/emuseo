@@ -38,7 +38,7 @@ public class ResourceServlet extends HttpServlet {
 	public static final String ATTACHMENT_PARAM = "attachment";
 
 	@Autowired
-	ResourceService resourceService;
+	protected ResourceService resourceService;
 
 	@Override
 	public void init(ServletConfig config) {
@@ -77,14 +77,13 @@ public class ResourceServlet extends HttpServlet {
 			// resolving path and name together
 			String requestedCode = transformedRequestedPath;
 
-			ResourceDTO resource = null;
-			resource = resourceService.getResourceByCode(requestedCode);
+			ResourceDTO resource = resourceService.getResourceByCode(requestedCode);
 			if (resource == null) {
 				LOG.debug("Error getting resource: {}", requestedCode);
 				response.sendError(HttpServletResponse.SC_NOT_FOUND,
 						String.format("Resource %s could not be found.", requestedCode));
+				return;
 			}
-			// String mimeType = resource.getMimeType();
 
 			String stringPathCode = resource.getPath();
 			File filePathCode = new File(stringPathCode);
@@ -96,7 +95,8 @@ public class ResourceServlet extends HttpServlet {
 				ServletUtils.sendData(response, fileAsStream, resource.getFileName(), resource.getMimeType());
 			}
 		} catch (IOException e) {
-			response.sendError(HttpServletResponse.SC_GONE, String.format("Resource happen to be gone."));
+			response.sendError(HttpServletResponse.SC_GONE, "Resource happen to be gone.");
+			LOG.debug("Resource happen to be gone." + e.getLocalizedMessage());
 		}
 	}
 }

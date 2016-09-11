@@ -90,9 +90,6 @@ public class EMuseoUI extends UI {
 		};
 		navigator.addView(Permissions.LOGIN_VIEW, LoginView.class);
 		navigator.addView(Permissions.MENU_VIEW, MenuView.class);
-
-		// TODO delete mock login
-		// authenticationManager.login("admin", "pass");
 	}
 
 	public ApplicationContext getApplicationContext() {

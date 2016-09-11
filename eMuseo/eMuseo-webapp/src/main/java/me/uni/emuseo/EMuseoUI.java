@@ -32,6 +32,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.WrappedHttpSession;
 import com.vaadin.server.WrappedSession;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.themes.ValoTheme;
 
 @Theme(EMuseoUtil.DEFAULT_THEME)
 @PreserveOnRefresh
@@ -58,6 +59,7 @@ public class EMuseoUI extends UI {
 
 		getPage().setTitle(PAGE_TITLE);
 		Responsive.makeResponsive(this);
+		addStyleName(ValoTheme.UI_WITH_MENU);
 
 		navigator = new Navigator(this, this) {
 

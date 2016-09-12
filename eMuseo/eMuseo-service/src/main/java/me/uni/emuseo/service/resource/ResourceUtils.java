@@ -53,9 +53,9 @@ public class ResourceUtils {
 		}
 		String OPENSHIFT_GEAR_DNS = System.getenv("OPENSHIFT_GEAR_DNS");
 		if (OPENSHIFT_GEAR_DNS != null) {
-			resourceUrl = "http://" + OPENSHIFT_GEAR_DNS + "/resource/";
+			resourceUrl = "http://" + OPENSHIFT_GEAR_DNS + "/app/resource/";
 		} else {
-			resourceUrl = "http://localhost:" + retrieveServerPort() + "/eMuseo-webapp/resource/";
+			resourceUrl = "http://localhost:" + retrieveServerPort() + "/app/resource/";
 		}
 		return resourceUrl;
 	}

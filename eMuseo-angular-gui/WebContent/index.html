@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eMuseo Wystawa</title>
+<link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico">
+<link rel="stylesheet" type="text/css" href="styles/main.css">
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="bower_components/angulargrid/angulargrid.min.js"></script>
+
+<script src="js/service.js"></script>
+<script src="js/controller.js"></script>
+</head>
+<body ng-app="exhibitApp">
+	<div class="header">
+		<div class="hdr-logo" align="center">
+			<img alt="eMuseo" src="images/eMuseo-300px.png">eMuseo
+		</div>
+		<div class="hdr-text">
+			Witaj na stronie eMuseo,<br>sprawdź poniżej jakie eksponaty
+			znajdują się aktualnie na wystawie!
+		</div>
+		<button class="hdr-app-button" onclick="location.href = 'app';">Przejdź
+			do aplikacji</button>
+	</div>
+	<div class="exhibits-container" ng-controller="exhibitRestServiceCtrl">
+		<ul class="dynamic-grid" angular-grid="exhibits" grid-width="280"
+			gutter-size="15" angular-grid-id="gallery"
+			refresh-on-img-load="false">
+			<li data-ng-repeat="exh in exhibits" class="grid"><img
+				ng-if="exh.resourceUrl" src="{{exh.resourceUrl}}" class="grid-img" />
+				<img ng-if="!exh.resourceUrl" src="images/no_img.jpg"
+				class="grid-img">
+				<div class="exh-details">
+					<h1 class="exh-name">{{exh.exhibitName}}</h1>
+					<p class="exh-desc">{{exh.exhibitDesc}}</p>
+					<span class="exh-category">{{exh.exhibitNo}},
+						{{exh.exhibitCategory}}</span>
+				</div></li>
+		</ul>
+	</div>
+</body>
+</html>

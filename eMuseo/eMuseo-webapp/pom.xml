@@ -139,6 +139,7 @@
 	</repositories>
 
 	<build>
+		<finalName>app</finalName>
 		<plugins>
 			<!-- As we are doing "inplace" GWT compilation, ensure the widgetset -->
 			<!-- directory is cleaned properly -->

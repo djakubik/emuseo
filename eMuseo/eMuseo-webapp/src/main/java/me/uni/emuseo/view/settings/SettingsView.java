@@ -46,6 +46,12 @@ public class SettingsView extends ExpandingPanel implements View {
 			@Override
 			protected void onSave(UserDetailsDTO bean) {
 				authManager.setUserDetails(bean);
+				refreshTheme();
+			}
+
+			private void refreshTheme() {
+				UserDetailsDTO userDetails = authManager.getUserDetails();
+				EMuseoUtil.refreshTheme(userDetails);
 			}
 		};
 

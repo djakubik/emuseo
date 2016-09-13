@@ -18,8 +18,10 @@ import org.springframework.security.core.context.SecurityContext;
 
 import com.vaadin.ui.UI;
 
+import me.uni.emuseo.model.users.UserDetailsDTO;
+
 public class EMuseoUtil {
-	
+
 	public static final String EMUSEO_THEME = "emuseo-theme";
 	public static final String DARK_EMUSEO_THEME = "dark-emuseo-theme";
 	public static final String DEFAULT_THEME = DARK_EMUSEO_THEME;
@@ -31,8 +33,15 @@ public class EMuseoUtil {
 	public static SecurityContext getSecurityContext() {
 		return ((EMuseoUI) UI.getCurrent()).getSecurityContext();
 	}
-	
+
 	public static List<String> getAvailableThemes() {
 		return Arrays.asList(EMUSEO_THEME, DARK_EMUSEO_THEME);
+	}
+
+	public static void refreshTheme(UserDetailsDTO userDetails) {
+		String theme = userDetails.getTheme();
+		if (theme != null && !theme.equals(UI.getCurrent().getTheme())) {
+			UI.getCurrent().setTheme(theme);
+		}
 	}
 }

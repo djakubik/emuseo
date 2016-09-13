@@ -14,17 +14,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
-import me.uni.emuseo.EMuseoUtil;
-import me.uni.emuseo.model.users.UserDetailsDTO;
-import me.uni.emuseo.service.AuthManager;
-import me.uni.emuseo.service.Permissions;
-import me.uni.emuseo.view.categories.CategoryLayout;
-import me.uni.emuseo.view.exhibits.ExhibitLayout;
-import me.uni.emuseo.view.resources.ResourceLayout;
-import me.uni.emuseo.view.settings.MyAccountView;
-import me.uni.emuseo.view.settings.SettingsView;
-import me.uni.emuseo.view.users.UserLayout;
-
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -45,8 +34,18 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
+
+import me.uni.emuseo.EMuseoUtil;
+import me.uni.emuseo.model.users.UserDetailsDTO;
+import me.uni.emuseo.service.AuthManager;
+import me.uni.emuseo.service.Permissions;
+import me.uni.emuseo.view.categories.CategoryLayout;
+import me.uni.emuseo.view.exhibits.ExhibitLayout;
+import me.uni.emuseo.view.resources.ResourceLayout;
+import me.uni.emuseo.view.settings.MyAccountView;
+import me.uni.emuseo.view.settings.SettingsView;
+import me.uni.emuseo.view.users.UserLayout;
 
 public class MenuView extends ValoMenuLayout implements View {
 
@@ -255,11 +254,7 @@ public class MenuView extends ValoMenuLayout implements View {
 		UserDetailsDTO userDetails = authManager.getUserDetails();
 		settingsItem.setText(userDetails.getFullName());
 
-		String theme = userDetails.getTheme();
-		if (theme != null && !theme.equals(UI.getCurrent().getTheme())) {
-			System.out.println("CHANGE THEME TO "+theme);
-			UI.getCurrent().setTheme(theme);
-		}
+		EMuseoUtil.refreshTheme(userDetails);
 
 		if (userDetails.getImage() != null && userDetails.getImage().length > 0) {
 		} else {

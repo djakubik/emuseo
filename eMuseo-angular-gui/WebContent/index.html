@@ -29,7 +29,7 @@
 	<div class="exhibits-container" ng-controller="exhibitRestServiceCtrl">
 		<ul class="dynamic-grid" angular-grid="exhibits" grid-width="280"
 			gutter-size="15" angular-grid-id="gallery"
-			refresh-on-img-load="false">
+			refresh-on-img-load="true" performantScroll="true">
 			<li data-ng-repeat="exh in exhibits" class="grid"><img
 				ng-if="exh.resourceUrl" src="{{exh.resourceUrl}}" class="grid-img" />
 				<img ng-if="!exh.resourceUrl" src="images/no-img.png"

@@ -18,7 +18,7 @@ import me.uni.emuseo.view.common.form.FormBuilder;
 import me.uni.emuseo.view.common.helpers.FieldConfiguratorCaptionImpl;
 
 public class ExhibitFormLayout extends FormBuilder<ExhibitDTO> {
-	
+
 	protected ExhibitDTO exhibitBean;
 
 	public ExhibitFormLayout() {
@@ -33,17 +33,17 @@ public class ExhibitFormLayout extends FormBuilder<ExhibitDTO> {
 
 	protected void init2() {
 		@SuppressWarnings("unchecked")
-		List<String>[] fields = new List[] { Arrays.asList("exhibitName", "exhibitNo", "genericYear",
-				"exhibitCategory", "exhibitLocation", "exhibitDesc") };
-		
-		DescriptionFieldBuilder fieldBuilder = new DescriptionFieldBuilder("exhibitDesc");
-		ExhibitCategoryFieldBuilder categoryFieldBuilder = new ExhibitCategoryFieldBuilder();
+		List<String>[] fields = new List[] { Arrays.asList("exhibitName", "exhibitNo", "genericYear", "exhibitCategory",
+				"exhibitLocation", "exhibitDesc") };
+
 		FieldConfiguratorCaptionImpl fieldConfiguratorCaptionImpl = new FieldConfiguratorCaptionImpl()
 				.setNullRepresentation("").setWidth(300).put("exhibitName", "Nazwa").put("exhibitNo", "Numer kat.")
 				.put("genericYear", "Wiek w latach").put("exhibitCategory", "Kategoria")
 				.put("exhibitLocation", "Lokalizacja").put("exhibitDesc", "Opis");
-		addFieldBuilder(fieldBuilder);
-		addFieldBuilder(categoryFieldBuilder);
+
+		addFieldBuilder(new ExhibitLocationFieldBuilder());
+		addFieldBuilder(new DescriptionFieldBuilder("exhibitDesc"));
+		addFieldBuilder(new ExhibitCategoryFieldBuilder());
 		addFieldConfigurator(fieldConfiguratorCaptionImpl);
 		setBean(exhibitBean, fields);
 	}

@@ -42,6 +42,7 @@ public class ExhibitSearchFormLayout extends SearchFormLayout<ExhibitSearchDTO> 
 				.put("genericYearFrom", "Wiek od").put("genericYearTo", "Wiek do").put("exhibitDesc", "Opis")
 				.put("exhibitCategory", "Kategoria").put("exhibitLocation", "Lokalizacja");
 		formBuilder.addFieldBuilder(new ExhibitCategoryFieldBuilder());
+		formBuilder.addFieldBuilder(new ExhibitLocationFieldBuilder());
 		formBuilder.addFieldConfigurator(fieldConfiguratorCaptionImpl);
 		return fields;
 	}

@@ -11,8 +11,11 @@
 package me.uni.emuseo.view.exhibits;
 
 import me.uni.emuseo.model.exhibits.ExhibitDTO;
+import me.uni.emuseo.model.exhibits.ExhibitLocation;
 import me.uni.emuseo.view.common.paging.OrderedTable;
+import me.uni.emuseo.view.exhibits.util.ExhibitLocationTranslator;
 
+import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.Action;
 import com.vaadin.event.Action.Handler;
@@ -23,7 +26,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.Table;
 
 public class ExhibitTable extends Table implements OrderedTable {
-	
+
 	/**
 	 * 
 	 */
@@ -81,6 +84,14 @@ public class ExhibitTable extends Table implements OrderedTable {
 				new Object[] { "exhibitName", "exhibitNo", "genericYear", "exhibitCategory.name", "exhibitLocation" });
 		setColumnHeaders("Nazwa", "Numer kat.", "Wiek w latach", "Kategoria", "Lokalizacja");
 
+	}
+
+	@Override
+	protected String formatPropertyValue(Object rowId, Object colId, Property<?> property) {
+		if ("exhibitLocation".equals(colId)) {
+			return ExhibitLocationTranslator.getTranslation((ExhibitLocation) property.getValue());
+		}
+		return super.formatPropertyValue(rowId, colId, property);
 	}
 
 	protected void onEdit(ExhibitDTO itemId) {

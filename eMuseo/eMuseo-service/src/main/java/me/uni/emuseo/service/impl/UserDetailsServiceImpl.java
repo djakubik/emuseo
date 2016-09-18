@@ -17,9 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import me.uni.emuseo.model.users.UserDetailsDTO;
 import me.uni.emuseo.service.UserDetailsService;
 import me.uni.emuseo.service.dao.Dao;
-import me.uni.emuseo.service.mapper.MapperImpl;
 import me.uni.emuseo.service.model.User;
 import me.uni.emuseo.service.model.UserDetails;
+import me.uni.emuseo.service.utils.MapperImpl;
 
 @Service
 @Transactional

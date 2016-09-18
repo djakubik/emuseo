@@ -28,9 +28,11 @@ import me.uni.emuseo.service.ExhibitService;
 import me.uni.emuseo.service.ResourceService;
 import me.uni.emuseo.service.dao.Alias;
 import me.uni.emuseo.service.dao.Dao;
-import me.uni.emuseo.service.mapper.CriterionProducer;
-import me.uni.emuseo.service.mapper.MapperImpl;
 import me.uni.emuseo.service.model.Exhibit;
+import me.uni.emuseo.service.model.Resource;
+import me.uni.emuseo.service.utils.CriterionProducer;
+import me.uni.emuseo.service.utils.MapperImpl;
+import me.uni.emuseo.utils.StorageUtils;
 
 @Service
 @Transactional
@@ -92,6 +94,10 @@ public class ExhibitServiceImpl implements ExhibitService {
 	public boolean deleteExhibit(Long id) {
 		Exhibit exhibit = dao.get(Exhibit.class, id);
 		if (exhibit != null) {
+			Resource resource = exhibit.getResource();
+			if (resource != null) {
+				StorageUtils.deleteFile(resource.getPath());
+			}
 			dao.delete(exhibit);
 			return true;
 		} else {

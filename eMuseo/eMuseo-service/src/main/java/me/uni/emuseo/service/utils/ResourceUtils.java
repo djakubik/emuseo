@@ -8,7 +8,7 @@
  * Contributors:
  *     Darian Jakubik - initial API and implementation
  ******************************************************************************/
-package me.uni.emuseo.service.resource;
+package me.uni.emuseo.service.utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +20,10 @@ import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.management.Query;
 
+import org.apache.commons.io.FilenameUtils;
+
+import me.uni.emuseo.model.resources.ResourceAddEditDTO;
+import me.uni.emuseo.service.model.Exhibit;
 import me.uni.emuseo.service.model.Resource;
 import me.uni.emuseo.utils.StorageUtils;
 
@@ -27,6 +31,21 @@ public class ResourceUtils {
 
 	private static File resourceDir;
 	private static String resourceUrl;
+
+	public static String calculateResourceCode(Exhibit exhibit, ResourceAddEditDTO resource) {
+		String id = Long.toString(exhibit.getExhibitId());
+		return new StringBuilder("EXH-").append(id).toString();
+	}
+
+	public static String calculateResourceCodeWithExtension(Exhibit exhibit, ResourceAddEditDTO resource) {
+		String id = Long.toString(exhibit.getExhibitId());
+		String extension = FilenameUtils.getExtension(resource.getFileName());
+		return new StringBuilder("EXH-").append(id).append('.').append(extension).toString();
+	}
+
+	public static File calculateResourceFile(Resource resource) {
+		return new File(getResourceDir(), resource.getCode());
+	}
 
 	public static File getResourceDir() {
 		if (resourceDir != null) {
@@ -63,7 +82,7 @@ public class ResourceUtils {
 	public static String getResourceUrl(String resourceCode) {
 		return getResourceServletUrl() + resourceCode;
 	}
-	
+
 	public static String getResourceUrl(Resource resource) {
 		if (resource != null && resource.getCode() != null) {
 			String resourceUrl = null;

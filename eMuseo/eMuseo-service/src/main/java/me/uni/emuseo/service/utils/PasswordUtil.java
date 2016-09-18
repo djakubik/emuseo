@@ -8,7 +8,7 @@
  * Contributors:
  *     Darian Jakubik - initial API and implementation
  ******************************************************************************/
-package me.uni.emuseo.service.mapper;
+package me.uni.emuseo.service.utils;
 
 
 public class PasswordUtil {

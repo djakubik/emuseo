@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>me.uni.emuseo</groupId>
 		<artifactId>eMuseo</artifactId>
-		<version>1.0.2-SNAPSHOT</version>
+		<version>1.1.0-SNAPSHOT</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -24,6 +24,11 @@
 		<dependency>
 			<groupId>me.uni.emuseo</groupId>
 			<artifactId>eMuseo-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>me.uni.emuseo</groupId>
+			<artifactId>eMuseo-servlets</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -110,11 +115,6 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>${spring.security.version}</version>
@@ -129,6 +129,7 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring.security.version}</version>
 		</dependency>
+
 	</dependencies>
 
 	<repositories>

@@ -64,7 +64,7 @@
 
 	<servlet>
 		<servlet-name>resource-servlet</servlet-name>
-		<servlet-class>me.uni.emuseo.service.resource.ResourceServlet</servlet-class>
+		<servlet-class>me.uni.emuseo.resource.ResourceServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>

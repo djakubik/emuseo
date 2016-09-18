@@ -304,6 +304,20 @@ public class StorageUtils {
 	/**
 	 * Removes file from the disk.
 	 * 
+	 * @param pathFileName
+	 *            Path to file on disk to remove.
+	 * @return True if deleting file was successful, false otherwise.
+	 */
+	public static boolean deleteFile(String pathFileName) {
+		if (pathFileName == null) {
+			return false;
+		}
+		return deleteFile(new File(pathFileName));
+	}
+
+	/**
+	 * Removes file from the disk.
+	 * 
 	 * @param file
 	 *            File on disk to remove.
 	 * @return True if deleting file was successful, false otherwise.

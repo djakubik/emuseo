@@ -8,7 +8,7 @@
  * Contributors:
  *     Darian Jakubik - initial API and implementation
  ******************************************************************************/
-package me.uni.emuseo.service.mapper;
+package me.uni.emuseo.service.utils;
 
 import me.uni.emuseo.model.categories.CategoryDTO;
 import me.uni.emuseo.model.exhibits.ExhibitDTO;
@@ -22,7 +22,6 @@ import me.uni.emuseo.service.model.Exhibit;
 import me.uni.emuseo.service.model.Resource;
 import me.uni.emuseo.service.model.User;
 import me.uni.emuseo.service.model.UserDetails;
-import me.uni.emuseo.service.resource.ResourceUtils;
 
 import org.joda.time.LocalDate;
 

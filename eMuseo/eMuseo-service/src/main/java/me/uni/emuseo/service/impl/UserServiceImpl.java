@@ -26,10 +26,10 @@ import me.uni.emuseo.model.users.UserSearchDTO;
 import me.uni.emuseo.service.UserService;
 import me.uni.emuseo.service.dao.Alias;
 import me.uni.emuseo.service.dao.Dao;
-import me.uni.emuseo.service.mapper.CriterionProducer;
-import me.uni.emuseo.service.mapper.MapperImpl;
-import me.uni.emuseo.service.mapper.PasswordUtil;
 import me.uni.emuseo.service.model.User;
+import me.uni.emuseo.service.utils.CriterionProducer;
+import me.uni.emuseo.service.utils.MapperImpl;
+import me.uni.emuseo.service.utils.PasswordUtil;
 
 @Service
 @Transactional

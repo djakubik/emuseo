@@ -19,9 +19,9 @@ import me.uni.emuseo.model.categories.CategorySearchDTO;
 import me.uni.emuseo.service.CategoryService;
 import me.uni.emuseo.service.dao.Alias;
 import me.uni.emuseo.service.dao.Dao;
-import me.uni.emuseo.service.mapper.CriterionProducer;
-import me.uni.emuseo.service.mapper.MapperImpl;
 import me.uni.emuseo.service.model.Category;
+import me.uni.emuseo.service.utils.CriterionProducer;
+import me.uni.emuseo.service.utils.MapperImpl;
 
 import org.hibernate.criterion.Criterion;
 import org.springframework.beans.factory.annotation.Autowired;

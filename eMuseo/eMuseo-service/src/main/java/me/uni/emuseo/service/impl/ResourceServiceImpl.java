@@ -26,10 +26,10 @@ import me.uni.emuseo.model.resources.ResourceDTO;
 import me.uni.emuseo.service.ResourceService;
 import me.uni.emuseo.service.dao.Alias;
 import me.uni.emuseo.service.dao.Dao;
-import me.uni.emuseo.service.mapper.MapperImpl;
 import me.uni.emuseo.service.model.Exhibit;
 import me.uni.emuseo.service.model.Resource;
-import me.uni.emuseo.service.resource.ResourceUtils;
+import me.uni.emuseo.service.utils.MapperImpl;
+import me.uni.emuseo.service.utils.ResourceUtils;
 import me.uni.emuseo.utils.StorageUtils;
 
 @Service
@@ -42,8 +42,7 @@ public class ResourceServiceImpl implements ResourceService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * me.uni.emuseo.service.ResourceService#getResource(java.lang.Long)
+	 * @see me.uni.emuseo.service.ResourceService#getResource(java.lang.Long)
 	 */
 	@Override
 	public ResourceDTO getResource(Long id) {
@@ -54,8 +53,7 @@ public class ResourceServiceImpl implements ResourceService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * me.uni.emuseo.service.ResourceService#getResourceByCode(java.lang.
+	 * @see me.uni.emuseo.service.ResourceService#getResourceByCode(java.lang.
 	 * String)
 	 */
 	@Override
@@ -102,9 +100,8 @@ public class ResourceServiceImpl implements ResourceService {
 		} else {
 			if (resource == null) {
 				resource = new Resource();
-				resource.setCode(Long.toString(exhibit.getExhibitId()));
-				resource.setPath(
-						ResourceUtils.getResourceDir().getAbsolutePath() + File.separator + resource.getCode());
+				resource.setCode(ResourceUtils.calculateResourceCode(exhibit, resourceDTO));
+				resource.setPath(ResourceUtils.calculateResourceFile(resource).getAbsolutePath());
 				resource.setExhibit(exhibit);
 				exhibit.setResource(resource);
 			}

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.uni.emuseo</groupId>
 	<artifactId>eMuseo</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>eMuseo-api</module>
@@ -11,6 +11,7 @@
 		<module>eMuseo-service</module>
 		<module>eMuseo-resteasy-service</module>
 		<module>eMuseo-webapp</module>
+		<module>eMuseo-servlets</module>
 	</modules>
 	
 	<properties>

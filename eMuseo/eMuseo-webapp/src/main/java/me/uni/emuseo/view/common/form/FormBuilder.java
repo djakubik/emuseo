@@ -10,6 +10,7 @@
  ******************************************************************************/
 package me.uni.emuseo.view.common.form;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -29,8 +30,9 @@ import com.vaadin.ui.Field;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 
-public class FormBuilder<BEANTYPE> {
+public class FormBuilder<BEANTYPE> implements Serializable {
 
+	private static final long serialVersionUID = 6618733308194923648L;
 	protected Layout content;
 	protected BeanFieldGroup<BEANTYPE> fieldGroup;
 	protected FieldLayoutManager fieldLayoutManager;
@@ -189,8 +191,9 @@ public class FormBuilder<BEANTYPE> {
 		fieldConfigurators.remove(fieldConfigurator);
 	}
 
-	public class FieldLayoutManager {
+	public class FieldLayoutManager implements Serializable {
 
+		private static final long serialVersionUID = 2413805053861387312L;
 		protected Map<String, Integer> fieldToLayoutMap;
 		protected Layout[] layouts;
 

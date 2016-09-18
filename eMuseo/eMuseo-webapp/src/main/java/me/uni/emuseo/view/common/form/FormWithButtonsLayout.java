@@ -10,6 +10,9 @@
  ******************************************************************************/
 package me.uni.emuseo.view.common.form;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Alignment;
@@ -21,10 +24,8 @@ import com.vaadin.ui.VerticalLayout;
 
 public abstract class FormWithButtonsLayout<T> extends VerticalLayout {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 205262263499688089L;
+	private static final Logger LOG = LoggerFactory.getLogger(FormWithButtonsLayout.class);
 	private T bean;
 	private FormBuilder<T> formBuilder;
 
@@ -90,7 +91,7 @@ public abstract class FormWithButtonsLayout<T> extends VerticalLayout {
 			T bean = formBuilder.getBean();
 			onSave(bean);
 		} catch (CommitException e) {
-			e.printStackTrace();
+			LOG.warn("Commit failed", e);
 		}
 	}
 

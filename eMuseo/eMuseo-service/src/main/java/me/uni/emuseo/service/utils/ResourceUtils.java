@@ -22,12 +22,16 @@ import javax.management.Query;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import me.uni.emuseo.model.resources.ResourceAddEditDTO;
 import me.uni.emuseo.service.model.Exhibit;
 import me.uni.emuseo.service.model.Resource;
 
 public class ResourceUtils {
+
+	private static final Logger LOG = LoggerFactory.getLogger(ResourceUtils.class);
 
 	private static File resourceDir;
 	private static String resourceUrl;
@@ -61,7 +65,7 @@ public class ResourceUtils {
 		try {
 			FileUtils.forceMkdir(resourceDir);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.error("Could not create resource directory", e);
 		}
 		return resourceDir;
 	}
@@ -85,9 +89,7 @@ public class ResourceUtils {
 
 	public static String getResourceUrl(Resource resource) {
 		if (resource != null && resource.getCode() != null) {
-			String resourceUrl = null;
-			resourceUrl = getResourceUrl(resource.getCode());
-			return resourceUrl;
+			return getResourceUrl(resource.getCode());
 		}
 		return null;
 	}
@@ -103,7 +105,7 @@ public class ResourceUtils {
 			}
 			return endPointsPort;
 		} catch (MalformedObjectNameException e) {
-			e.printStackTrace();
+			LOG.error("Could not retrieve server port", e);
 		}
 		return "8080";
 	}

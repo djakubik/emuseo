@@ -10,6 +10,9 @@
  ******************************************************************************/
 package me.uni.emuseo.view.common.form;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
@@ -20,10 +23,9 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 public abstract class FormPopUpWindow<T> extends Window {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4023778432405550695L;
+	private static final Logger LOG = LoggerFactory.getLogger(FormPopUpWindow.class);
 	protected FormBuilder<T> formBuilder;
 	protected Button saveButton;
 	protected Button cancelButton;
@@ -46,7 +48,7 @@ public abstract class FormPopUpWindow<T> extends Window {
 		setContent(windowLayout);
 		setModal(true);
 	}
-	
+
 	public FormPopUpWindow(T bean, String caption) {
 		this(bean);
 		setCaption(caption);
@@ -99,15 +101,13 @@ public abstract class FormPopUpWindow<T> extends Window {
 			if (onSave(bean)) {
 				super.close();
 			}
-		} catch (CommitException e) {
-			e.printStackTrace();
-		} catch (InvalidBeanException e) {
-			e.printStackTrace();
+		} catch (CommitException | InvalidBeanException e) {
+			LOG.warn("Commit failed", e);
 		}
 	}
-	
+
 	protected abstract FormBuilder<T> createForm(T bean);
 
-	protected abstract boolean onSave(T bean) throws InvalidBeanException ;
+	protected abstract boolean onSave(T bean) throws InvalidBeanException;
 
 }

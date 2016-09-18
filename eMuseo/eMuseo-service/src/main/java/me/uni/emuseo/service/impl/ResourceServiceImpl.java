@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,6 @@ import me.uni.emuseo.service.model.Exhibit;
 import me.uni.emuseo.service.model.Resource;
 import me.uni.emuseo.service.utils.MapperImpl;
 import me.uni.emuseo.service.utils.ResourceUtils;
-import me.uni.emuseo.utils.StorageUtils;
 
 @Service
 @Transactional
@@ -95,7 +95,7 @@ public class ResourceServiceImpl implements ResourceService {
 			if (resource != null) {
 				exhibit.setResource(null);
 				dao.saveOrUpdate(exhibit);
-				StorageUtils.deleteFile(new File(resource.getPath()));
+				FileUtils.deleteQuietly(new File(resource.getPath()));
 			}
 		} else {
 			if (resource == null) {
@@ -109,7 +109,7 @@ public class ResourceServiceImpl implements ResourceService {
 			dao.saveOrUpdate(exhibit);
 			dao.saveOrUpdate(resource);
 			try {
-				StorageUtils.saveFileWithChannel(new File(resource.getPath()), fileData);
+				FileUtils.writeByteArrayToFile(new File(resource.getPath()), fileData);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

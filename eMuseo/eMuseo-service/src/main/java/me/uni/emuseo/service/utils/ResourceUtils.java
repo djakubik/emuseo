@@ -20,12 +20,12 @@ import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.management.Query;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import me.uni.emuseo.model.resources.ResourceAddEditDTO;
 import me.uni.emuseo.service.model.Exhibit;
 import me.uni.emuseo.service.model.Resource;
-import me.uni.emuseo.utils.StorageUtils;
 
 public class ResourceUtils {
 
@@ -59,7 +59,7 @@ public class ResourceUtils {
 			resourceDir = new File(currentUsersHomeDir, "emuseo-res");
 		}
 		try {
-			StorageUtils.createDirIfNotExists(resourceDir);
+			FileUtils.forceMkdir(resourceDir);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

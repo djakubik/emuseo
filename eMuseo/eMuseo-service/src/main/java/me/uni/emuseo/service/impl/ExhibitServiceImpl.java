@@ -10,9 +10,11 @@
  ******************************************************************************/
 package me.uni.emuseo.service.impl;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,6 @@ import me.uni.emuseo.service.model.Exhibit;
 import me.uni.emuseo.service.model.Resource;
 import me.uni.emuseo.service.utils.CriterionProducer;
 import me.uni.emuseo.service.utils.MapperImpl;
-import me.uni.emuseo.utils.StorageUtils;
 
 @Service
 @Transactional
@@ -96,7 +97,7 @@ public class ExhibitServiceImpl implements ExhibitService {
 		if (exhibit != null) {
 			Resource resource = exhibit.getResource();
 			if (resource != null) {
-				StorageUtils.deleteFile(resource.getPath());
+				FileUtils.deleteQuietly(new File(resource.getPath()));
 			}
 			dao.delete(exhibit);
 			return true;

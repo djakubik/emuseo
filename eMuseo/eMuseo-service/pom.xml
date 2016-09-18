@@ -20,11 +20,6 @@
 			<artifactId>eMuseo-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>me.uni.emuseo</groupId>
-			<artifactId>eMuseo-utils</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 
 		<!-- Spring -->
 		<dependency>

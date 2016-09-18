@@ -7,7 +7,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>eMuseo-api</module>
-		<module>eMuseo-utils</module>
 		<module>eMuseo-service</module>
 		<module>eMuseo-resteasy-service</module>
 		<module>eMuseo-webapp</module>

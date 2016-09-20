@@ -17,6 +17,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.omnifaces.servlet.FileServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -26,22 +28,24 @@ import me.uni.emuseo.service.ResourceService;
 public class ResourceServlet extends FileServlet<ResourceDTO> {
 
 	private static final long serialVersionUID = -6028328292134993575L;
+	private static final Logger LOG = LoggerFactory.getLogger(ResourceServlet.class);
 	public static final String ATTACHMENT_PARAM = "attachment";
 
 	@Autowired
-	protected ResourceService resourceService;
+	protected transient ResourceService resourceService;
 
 	@Override
 	public void init(ServletConfig config) {
 		try {
 			super.init(config);
 		} catch (ServletException e) {
+			LOG.error("Servlet initialization error", e);
 		}
 		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
 	}
 
 	@Override
-	protected ResourceDTO getMetadata(HttpServletRequest req) throws IllegalArgumentException {
+	protected ResourceDTO getMetadata(HttpServletRequest req) {
 		String requestedPath = req.getPathInfo();
 		String transformedRequestedPath = requestedPath.substring(1).replace('\\', File.separatorChar).replace('/',
 				File.separatorChar);
@@ -53,7 +57,7 @@ public class ResourceServlet extends FileServlet<ResourceDTO> {
 	}
 
 	@Override
-	protected File getFile(HttpServletRequest request, ResourceDTO resource) throws IllegalArgumentException {
+	protected File getFile(HttpServletRequest request, ResourceDTO resource) {
 		if (resource == null) {
 			return null;
 		}
@@ -72,10 +76,9 @@ public class ResourceServlet extends FileServlet<ResourceDTO> {
 	@Override
 	protected boolean isAttachment(HttpServletRequest req, String contentType, ResourceDTO resource) {
 		// whether download as attachment or just data
-		String attachmentString = req.getParameter(ATTACHMENT_PARAM);
-		if (attachmentString != null) {
-			boolean asAttachment = Boolean.parseBoolean(attachmentString);
-			return asAttachment;
+		String isAttachmentString = req.getParameter(ATTACHMENT_PARAM);
+		if (isAttachmentString != null) {
+			return Boolean.parseBoolean(isAttachmentString);
 		}
 		return super.isAttachment(req, contentType, resource);
 	}

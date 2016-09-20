@@ -143,7 +143,7 @@ public abstract class FileServlet<METADATA> extends HttpServlet {
 
 		try {
 			METADATA metadata = getMetadata(request);
-			resource = new Resource<METADATA>(getFile(request, metadata), metadata);
+			resource = new Resource<>(getFile(request, metadata), metadata);
 		}
 		catch (IllegalArgumentException e) {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);

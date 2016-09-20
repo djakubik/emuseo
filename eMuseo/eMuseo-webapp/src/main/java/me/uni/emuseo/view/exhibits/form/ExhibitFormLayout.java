@@ -19,6 +19,8 @@ import me.uni.emuseo.view.common.helpers.FieldConfiguratorCaptionImpl;
 
 public class ExhibitFormLayout extends FormBuilder<ExhibitDTO> {
 
+	private static final long serialVersionUID = -9034102292710638068L;
+
 	protected ExhibitDTO exhibitBean;
 
 	public ExhibitFormLayout() {

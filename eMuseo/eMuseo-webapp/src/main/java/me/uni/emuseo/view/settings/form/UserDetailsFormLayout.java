@@ -19,6 +19,8 @@ import me.uni.emuseo.view.common.helpers.FieldConfiguratorCaptionImpl;
 
 public class UserDetailsFormLayout extends FormBuilder<UserDetailsDTO> {
 
+	private static final long serialVersionUID = -802407119145855414L;
+
 	protected UserDetailsDTO userDetailsBean;
 
 	public UserDetailsFormLayout() {
@@ -36,7 +38,8 @@ public class UserDetailsFormLayout extends FormBuilder<UserDetailsDTO> {
 		List<String>[] fields = new List[] { Arrays.asList("fullName", "theme", "language") };
 
 		FieldConfiguratorCaptionImpl fieldConfiguratorCaptionImpl = new FieldConfiguratorCaptionImpl()
-				.setNullRepresentation("").put("fullName", "Nazwa użytkownika").put("theme", "Motyw").put("language", "Język");
+				.setNullRepresentation("").put("fullName", "Nazwa użytkownika").put("theme", "Motyw")
+				.put("language", "Język");
 		addFieldBuilder(new UserDetailsFieldBuilder());
 		addFieldConfigurator(fieldConfiguratorCaptionImpl);
 		setBean(userDetailsBean, fields);

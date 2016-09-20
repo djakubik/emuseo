@@ -19,6 +19,8 @@ import me.uni.emuseo.view.common.helpers.FieldConfiguratorCaptionImpl;
 
 public class CategoryFormLayout extends FormBuilder<CategoryDTO> {
 
+	private static final long serialVersionUID = -3757793442693138426L;
+
 	protected CategoryDTO categoryBean;
 
 	public CategoryFormLayout() {

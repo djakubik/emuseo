@@ -26,7 +26,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.WrappedHttpSession;
@@ -61,33 +60,7 @@ public class EMuseoUI extends UI {
 		Responsive.makeResponsive(this);
 		addStyleName(ValoTheme.UI_WITH_MENU);
 
-		navigator = new Navigator(this, this) {
-
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = -3630835193893311802L;
-
-			@Override
-			protected void navigateTo(View view, String viewName, String parameters) {
-				if (view == null || viewName == null) {
-					return;
-				}
-				boolean authorized = isAuthorizedToView(viewName, parameters);
-				if (!authorized) {
-					Navigator navigator = UI.getCurrent().getNavigator();
-					authorized = authenticationManager.isAuthorizedTo(Permissions.MENU_VIEW);
-					if (authorized) {
-						navigator.navigateTo(Permissions.MENU_VIEW);
-					} else {
-						navigator.navigateTo(Permissions.LOGIN_VIEW);
-					}
-					return;
-				}
-				super.navigateTo(view, viewName, parameters);
-			}
-
-		};
+		navigator = new EMuseoNavigator(this, this, authenticationManager);
 		navigator.addView(Permissions.LOGIN_VIEW, LoginView.class);
 		navigator.addView(Permissions.MENU_VIEW, MenuView.class);
 	}
@@ -99,16 +72,4 @@ public class EMuseoUI extends UI {
 	public SecurityContext getSecurityContext() {
 		return securityContext;
 	}
-
-	private boolean isAuthorizedToView(String viewName, String parameters) {
-		boolean authorized = false;
-
-		if (viewName.isEmpty()) {
-			authorized = true;
-		} else {
-			authorized = authenticationManager.isAuthorizedTo(viewName, parameters);
-		}
-		return authorized;
-	}
-
 }

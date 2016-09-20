@@ -23,6 +23,8 @@ import me.uni.emuseo.view.common.helpers.FieldConfiguratorCaptionImpl;
 
 public class PasswordFormLayout extends FormBuilder<PasswordDTO> {
 
+	private static final long serialVersionUID = -7714211565610395947L;
+
 	protected PasswordDTO passwordBean;
 
 	public PasswordFormLayout() {
@@ -44,7 +46,7 @@ public class PasswordFormLayout extends FormBuilder<PasswordDTO> {
 				.put("newPassword", "Nowe hasło").put("newPasswordRetype", "Powtórz nowe hasło");
 		addFieldConfigurator(fieldConfiguratorCaptionImpl);
 		addFieldBuilder(new FieldBuilder() {
-			
+
 			@Override
 			public Field<?> build(String propertyId) {
 				return new PasswordField();

@@ -22,6 +22,8 @@ import me.uni.emuseo.view.common.helpers.FieldConfiguratorCaptionImpl;
 
 public class MyAccountFormLayout extends FormBuilder<UserDTO> {
 
+	private static final long serialVersionUID = 4177718506419101391L;
+
 	protected UserDTO userBean;
 
 	public MyAccountFormLayout(UserDTO user) {
